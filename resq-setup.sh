@@ -133,7 +133,7 @@ cd ~
 stop_daemon
 
 # Deploy binaries to /usr/bin
-sudo cp resq-masternode-setup/resq-v1.0.1.1/resq* /usr/bin/
+sudo cp resq-masternode-setup/resq-v1.0.1.3/resq* /usr/bin/
 sudo chmod 755 -R ~/resq-masternode-setup
 sudo chmod 755 /usr/bin/resq*
 

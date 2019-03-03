@@ -286,9 +286,9 @@ NOTE: To edit resq.conf, first stop the resqd daemon,
 then edit the resq.conf file and save it in nano: (Ctrl-X + Y + Enter),
 then start the resqd daemon back up:
 
-to stop:   ${YELLOW}eden-cli stop${NC}
+to stop:   ${YELLOW}resq-cli stop${NC}
 to edit:   ${YELLOW}nano ~/.resq/resq.conf${NC}
-to start:  ${YELLOW}edend${NC}
+to start:  ${YELLOW}resqd${NC}
 ========================================================================
 To view resqd debug log showing all MN network activity in realtime:
 
@@ -308,9 +308,6 @@ or just type 'node' and hit <TAB> to autocomplete script name.
 
 
 Enjoy your resq Masternode and thanks for using this setup script!
-
-If you found it helpful, please donate resq to:
-QSDFmwK17DpSs1WrLhyU2eji5Ddcg9z9bL
 
 ...and make sure to check back for updates!
 

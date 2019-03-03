@@ -20,7 +20,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 #resq TCP port
-PORT=19988
+PORT=13200
 
 #Clear keyboard input buffer
 function clear_stdin { while read -r -t 0; do read -r; done; }
@@ -126,14 +126,14 @@ fi
 #Installing Daemon
 cd ~
 #sudo rm resq-linux.tar.gz
-#wget https://github.com/RESQ-Chain/resq-chain/releases/download/v1.0.1.1/resq-linux.tar.gz
-#sudo tar -xvf resq-linux.tar.gz --strip-components 1 --directory /usr/bin
-#sudo rm resq-linux.tar.gz
+#wget https://github.com/RESQ-Chain/RESQ/releases/download/v3.1.1/resq-3.1.1.1-Ubuntu16.tar.gz
+#sudo tar -xvf resq-3.1.1.1-Ubuntu16.tar.gz --strip-components 1 --directory /usr/bin
+#sudo rm resq-3.1.1.1-Ubuntu16.tar.gz
 
 stop_daemon
 
 # Deploy binaries to /usr/bin
-sudo cp resq-masternode-setup/resq-v1.0.1.3/resq* /usr/bin/
+sudo cp resq-masternode-setup/resq-3.1.1.1-Ubuntu16/resq* /usr/bin/
 sudo chmod 755 -R ~/resq-masternode-setup
 sudo chmod 755 /usr/bin/resq*
 
@@ -184,6 +184,7 @@ onlynet=ipv4
 listen=1
 server=1
 daemon=1
+staking=0
 maxconnections=64
 externalip=$publicip
 masternode=1

@@ -4,7 +4,7 @@
 
 **NOTE:** This newer version of the script does not ask for IP address or masternode genkey anymore. Instead the __script will detect VPS IP Address and generate Masternode Private Key (genkey) automatically__. It will also create a 2GB swap file.
 
-If you follow the steps and use a newly installed Ubuntu 16.04 VPS, it will automatically configure and start your Masternode. Ubuntu 17.10 and other Linux distros ate not currently supported.
+If you follow the steps and use a newly installed Ubuntu 16.04 VPS, it will automatically configure and start your Masternode. Ubuntu 17.10 and other Linux distros are not currently supported in this installer
 
 Steps:
 
@@ -22,8 +22,8 @@ masternode outputs
 
 Copy it somewhere safe. You will use these in the masternode.conf file for your wallet later.
 
-**4) Connect to your VPS server console** using PuTTY terminal program, login as root and clone the setup script and wallet binaries from github repository.
-(NOTE: Currently this script repo contains Linux wallet binaries wich are necessary to run master node on VPS. The location of these binaries will be changed to the official release github folder at a later date)
+**4) Connect to your VPS server console** using PuTTY terminal program, login as root and run ```bash <(curl https://raw.githubusercontent.com/kydcoin/KYD3/master/contrib/masternodes/kyd-install.sh)
+```
 
 To download (clone) the script and binaries to your VPS, use the following command in VPS Linux console:
 

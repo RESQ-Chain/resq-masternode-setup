@@ -10,10 +10,10 @@ COIN_DAEMON='resqd'
 COIN_CLI='resq-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_TGZ='https://github.com/RESQ-Chain/RESQ/releases/download/v3.1.1/resq-3.1.1.1-Ubuntu16.tar.gz'
-COIN_BOOTSTRAP='https://raw.githubusercontent.com/RESQ-Chain/resq-masternode-setup/master/resq-bootstrap.tar.gz'
-BOOTSTRAP_ZIP=$(echo $COIN_BOOTSTRAP | awk -F'/' '{print $NF}')
+#COIN_BOOTSTRAP='https://raw.githubusercontent.com/RESQ-Chain/resq-masternode-setup/master/resq-bootstrap.tar.gz'
+#BOOTSTRAP_ZIP=$(echo $COIN_BOOTSTRAP | awk -F'/' '{print $NF}')
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-COIN_NAME='resq'
+COIN_NAME='RESQ'
 COIN_PORT=13200
 RPC_PORT=13211
 
@@ -368,10 +368,8 @@ exit 1
 
 function UpdateNode() {
 echo -e "Stopping resq Service"
-cp /etc/systemd/system/resq.service /etc/systemd/system/resq.service > /dev/null 2>&1
 systemctl stop $COIN_NAME.service > /dev/null 2>&1
-systemctl stop resq.service > /dev/null 2>&1
-rm /etc/systemd/system/resq.service > /dev/null 2>&1
+sleep 5
 download_node
 echo -e "Restarting Node"
   systemctl start $COIN_NAME.service

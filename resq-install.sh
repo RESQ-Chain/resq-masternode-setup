@@ -54,7 +54,7 @@ StartLimitBurst=5
 [Install]
 WantedBy=multi-user.target
 EOF
-download_bootstrap
+#download_bootstrap - commented this out for now as bootstrap not created
   systemctl daemon-reload
   sleep 3
   systemctl start $COIN_NAME.service

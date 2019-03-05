@@ -23,14 +23,9 @@ masternode outputs
 Copy it somewhere safe. You will use these in the masternode.conf file for your wallet later.
 
 **4) Connect to your VPS server console** using PuTTY terminal program, login as root and run 
-```bash <(curl https://raw.githubusercontent.com/kydcoin/KYD3/master/contrib/masternodes/kyd-install.sh)
-```
-
-To download (clone) the script and binaries to your VPS, use the following command in VPS Linux console:
 
 ```bash
-cd ~
-git clone https://github.com/RESQ-Chain/resq-masternode-setup
+bash <(curl https://raw.githubusercontent.com/kydcoin/KYD3/master/contrib/masternodes/kyd-install.sh)
 ```
 
 __NOTE:__ in case if you will need to re-download this setup script or binaries from github repo, use the following git command:

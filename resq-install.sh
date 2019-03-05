@@ -5,7 +5,7 @@ NC='\033[0m'
 
 TMP_FOLDER=$(mktemp -d)
 CONFIG_FILE='resq.conf'
-CONFIGFOLDER='/root/.RESQ'
+CONFIGFOLDER='/root/.resq'
 COIN_DAEMON='resqd'
 COIN_CLI='resq-cli'
 COIN_PATH='/usr/local/bin/'
@@ -13,7 +13,7 @@ COIN_TGZ='https://github.com/RESQ-Chain/RESQ/releases/download/v3.1.1/resq-3.1.1
 #COIN_BOOTSTRAP='https://raw.githubusercontent.com/RESQ-Chain/resq-masternode-setup/master/resq-bootstrap.tar.gz'
 #BOOTSTRAP_ZIP=$(echo $COIN_BOOTSTRAP | awk -F'/' '{print $NF}')
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-COIN_NAME='RESQ'
+COIN_NAME='resq'
 COIN_PORT=13200
 RPC_PORT=13211
 

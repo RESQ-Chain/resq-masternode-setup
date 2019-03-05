@@ -25,7 +25,7 @@ Copy it somewhere safe. You will use these in the masternode.conf file for your 
 **4) Connect to your VPS server console** using PuTTY terminal program, login as root and run 
 
 ```bash
-bash <(curl https://raw.githubusercontent.com/kydcoin/KYD3/master/contrib/masternodes/resq-install.sh)
+bash <(curl https://raw.githubusercontent.com/enginama/resq-masternode-setup/master/resq-install.sh)
 ```
 
 __NOTE:__ This process may take anywhere from 5 to 10 minutes, depending on your VPS HW specs. If it's not your very first ever masternode setup, you may want to speed up the process by doing things in parallel. While the MN setup script is running on the VPS, you can spend this time getting ready to start your new masternode from your Hot Wallet (also referred to as Control Wallet) by following instructions in next step (6).

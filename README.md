@@ -22,7 +22,8 @@ masternode outputs
 
 Copy it somewhere safe. You will use these in the masternode.conf file for your wallet later.
 
-**4) Connect to your VPS server console** using PuTTY terminal program, login as root and run ```bash <(curl https://raw.githubusercontent.com/kydcoin/KYD3/master/contrib/masternodes/kyd-install.sh)
+**4) Connect to your VPS server console** using PuTTY terminal program, login as root and run 
+```bash <(curl https://raw.githubusercontent.com/kydcoin/KYD3/master/contrib/masternodes/kyd-install.sh)
 ```
 
 To download (clone) the script and binaries to your VPS, use the following command in VPS Linux console:

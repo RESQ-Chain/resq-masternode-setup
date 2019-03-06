@@ -4,7 +4,7 @@
 
 **NOTE:** This newer version of the script does not ask for IP address or masternode genkey anymore. Instead the __script will detect VPS IP Address and generate Masternode Private Key (genkey) automatically__. It will also create a 2GB swap file.
 
-If you follow the steps and use a newly installed Ubuntu 16.04 VPS, it will automatically configure and start your Masternode. Ubuntu 17.10 and other Linux distros ate not currently supported.
+If you follow the steps and use a newly installed Ubuntu 16.04 VPS, it will automatically configure and start your Masternode. Ubuntu 17.10 and other Linux distros are not currently supported in this installer
 
 Steps:
 
@@ -22,30 +22,13 @@ masternode outputs
 
 Copy it somewhere safe. You will use these in the masternode.conf file for your wallet later.
 
-**4) Connect to your VPS server console** using PuTTY terminal program, login as root and clone the setup script and wallet binaries from github repository.
-(NOTE: Currently this script repo contains Linux wallet binaries wich are necessary to run master node on VPS. The location of these binaries will be changed to the official release github folder at a later date)
-
-To download (clone) the script and binaries to your VPS, use the following command in VPS Linux console:
+**4) Connect to your VPS server console** using PuTTY terminal program, login as root and run 
 
 ```bash
-cd ~
-git clone https://github.com/RESQ-Chain/resq-masternode-setup
+bash <(curl https://raw.githubusercontent.com/enginama/resq-masternode-setup/master/resq-install.sh)
 ```
 
-__NOTE:__ in case if you will need to re-download this setup script or binaries from github repo, use the following git command:
-```bash
-cd ~/resq-masternode-setup
-git reset --hard
-git pull
-```
-
-**5) Run the install script** which will install and configure your masternode with all necessary options.
-
-```bash
-cd ~/resq-masternode-setup
-bash resq-setup.sh
-```
-__NOTE:__ This process may take anywhere from 5 to 20 minutes, depending on your VPS HW specs. If it's not your very first ever masternode setup, you may want to speed up the process by doing things in parallel. While the MN setup script is running on the VPS, you can spend this time getting ready to start your new masternode from your Hot Wallet (also referred to as Control Wallet) by following instructions in next step (6).
+__NOTE:__ This process may take anywhere from 5 to 10 minutes, depending on your VPS HW specs. If it's not your very first ever masternode setup, you may want to speed up the process by doing things in parallel. While the MN setup script is running on the VPS, you can spend this time getting ready to start your new masternode from your Hot Wallet (also referred to as Control Wallet) by following instructions in next step (6).
 
 Once the script completes, it will output your VPS Public IP Address and masternode Private Key which it generated for this masternode. Detailed instructions on what to do next will be provided on the VPS console.
 
@@ -54,7 +37,7 @@ the collateral for this masternode is secured in your wallet. Without this step 
 
 Basically all you need to do is just edit the __masternode.conf__ text file located in your hot wallet __data directory__ to enter a few masternode parameters, restart the wallet and then issue a start command for this new masternode.
 
-There are two ways to edit __masternode.conf__. The easiest way is to open the file from within the wallet app (Tools -> Open Masternode Configuration File). Optionally, you can open it from the wallet data folder directly by navigating to the %appdata%/roaming/resqcore. Just hit Win+R, paste %appdata%/roaming/resqcore, hit Enter and then open **masternode.conf** with Notepad for editing. 
+There are two ways to edit __masternode.conf__. The easiest way is to open the file from within the wallet app (Tools -> Open Masternode Configuration File). Optionally, you can open it from the wallet data folder directly by navigating to the %appdata%/roaming/RESQ. Just hit Win+R, paste %appdata%/roaming/RESQ, hit Enter and then open **masternode.conf** with Notepad for editing. 
 
 It does not matter which way you open the file or how you edit it. In either case you will need to restart your wallet when you are done in order for it to pickup the changes you made in the file. Make sure to save it before you restart your wallet.
 
@@ -66,13 +49,13 @@ mn1 231.321.11.22:19988 27KTCRKgqjBgQbAS2BN9uX8GHBu16wXfr4z4hNDZWQAubqD8fr6 5d46
 
 The format for this string is as follow:
 ```bash
-masternodealias publicipaddress:19988 masternodeprivatekey output-tx-ID output-tx-index
+masternodealias publicipaddress:13200 masternodeprivatekey output-tx-ID output-tx-index
 ```
 
 Where:
 __masternodealias__ - your human readable masternode name (alias) which you use to identify the masternode. It can be any unique name as long as you can recognize it. It exists only in your wallet and has no impact on the masternode functionality.
 
-__publicipaddress:19988__ - this must be your masternode public IP address, which is usually the IP address of your VPS, accessible from the Internet. The new script (v1.1) will detect your IP address automatically. The __:19988__ suffix is the predefined and fixed TCP port which is being used in resq network for node-to-node and wallet-to-node communications. This port needs to be opened on your VPS server firewall so that others can talk to your masternode. The setup script takes care of it. NOTE: some VPS service providers may have additional firewall on their network which you may need to configure to open TCP port  19988. Vultr does not require this.
+__publicipaddress:13200__ - this must be your masternode public IP address, which is usually the IP address of your VPS, accessible from the Internet. The new script (v1.1) will detect your IP address automatically. The __:19988__ suffix is the predefined and fixed TCP port which is being used in resq network for node-to-node and wallet-to-node communications. This port needs to be opened on your VPS server firewall so that others can talk to your masternode. The setup script takes care of it. NOTE: some VPS service providers may have additional firewall on their network which you may need to configure to open TCP port  19988. Vultr does not require this.
 
 __masternodeprivatekey__ - this is your masternode private key which script will generate automatically. Each masternode will use its own unique private key to maintain secure communication with your Hot Wallet. You will have to generate a new key for each masternode you are setting up. Only your masternode and your hot wallet will be in possession of this private key. In case if you will need to change this key later for some reason, you will have to update it in your __masternode.conf__ in Hot Wallet as well as in the resq.conf in data directory on the masternode VPS.
 
@@ -136,34 +119,8 @@ If you are really bored waiting for the sync to complete, you can watch what you
 sudo tail -f ~/.resqcore/debug.log
 ```
 
-And for those who wonder what does **resq.conf** file looks like for a typical masternode which the setup script generates, here's an example below...
-
-Note that both, the __externalip__ should match the IP address and __masternodeprivkey__ should math the private key in your  __masternode.conf__ of your hot wallet in order for the masternode to function properly. If any of these two parameters change, they must be changed in both, the resq.conf file on the masternode VPS (located in /root/.resqcore directory) and masternode.conf on Hot Wallet PC (located in %appdata%/resqcore folder).
-
-Example: 
-
-**nano /root/.resqcore/resq.conf**
-
-```bash
-rpcuser=resqrpc
-rpcpassword=APQsN6waRANDOMPASSWORDYaFGhecQiAn
-rpcallowip=127.0.0.1
-listen=1
-server=1
-daemon=1
-maxconnections=256
-externalip=144.202.92.85
-masternode=1
-masternodeprivkey=2333H9uMa8wrYGb1hNotRealPKey64vr8BRYjPZP3LAR6WFGg
-```
-
 **In conclusion**
 
-The script adds a cron job which starts resqd daemon upon reboot. Try restarting your VPS server (just type reboot in Linux console) and see if your masternode comes back online automatically in a few minutes. Log back in using PuTTY and run the following command to monitor your masternode status:
-
-```
-watch -n 10 'resq-cli masternode status && resq-cli mnsync status'
-```
 
 The expected output for a functioning masternode will eventually look like this:
 
@@ -186,96 +143,4 @@ The expected output for a functioning masternode will eventually look like this:
 }
 
 ```
-
-**Advanced masternode monitoring script: nodemon.sh**
-
-The main purpose of this simple script is to monitor **masternode status and peer connections** in real-time. It will display all current __outbound__ connections of your masternode with great amount of statistis which can be used for troubleshooting of sync issues.
-
-Typically you should see more than a few nodes listed in the table and the amount of data sent/received should be updating every several seconds on a healthy masternode.
-
-Currently resq nodes will display most (if not all) peers with IPv6 addresses. This is normal as long as the data is being transferred and peers stay connected for a long time. Initially, when the node is just started, the outbound connection table may not show any peers for quite some time. It may take several hours to build up a healthy and stable list of peers.
-
-Sample output of the script from node 45.76.12.139 on Apr-26th 2018:
-```
-===========================================================================
-Outbound connections to other resq nodes [resq datadir: /root/.resqcore]
-===========================================================================
-Node IP               Ping    Rx/Tx     Since  Hdrs   Height  Time   Ban
-Address               (ms)   (KBytes)   Block  Syncd  Blocks  (min)  Score
-===========================================================================
-95.171.6.105:19988     118   6818/7929  2586   3706   3706    2361   0
-24.176.52.93:19988     37    5770/6829  2614   3706   3706    2301   0
-38.103.14.19:19988     8     9787/8024  2657   3706   3706    2208   0
-185.109.54.242:19988   134   4765/4824  2796   3706   3706    1908   0
-203.210.232.37:19988   261   4227/4316  2893   3706   3706    1716   0
-103.6.54.182:19988     279   2584/2638  3182   3706   3706    1111   0
-139.99.192.39:19988    209   2569/2595  3185   3706   3706    1100   0
-123.207.49.41:19988    275   2522/2462  3213   3706   3706    1037   0
-159.65.152.125:19988   217   2305/2363  3246   3681   3681    968    0
-141.101.14.64:19988    126   2319/2015  3352   3706   3706    747    0
-192.186.142.122:19988  12    1965/1673  3406   3705   3705    624    0
-144.202.109.173:19988  97    889/728    3572   3706   3706    273    0
-154.127.122.150:19988  295   572/622    3581   3669   3669    260    0
-45.77.42.248:19988     265   147/126    3681   3706   3706    52     0
-===========================================================================
- 22:14:21 up 3 days, 22:59,  3 users,  load average: 0.01, 0.03, 0.00
-===========================================================================
-Masternode Status:
-# resq-cli -datadir=/root/.resqcore masternode status
-{
-  "vin": "CTxIn(COutPoint(0a5afa9e8c41d003c4399f089bc54880e05ce8a051d30932d236ba12b5d1040b, 0), scriptSig=)",
-  "service": "45.76.12.139:19988",
-  "payee": "RXzYZLmj9D6o6XtdK3M3xY2xCfNTSW464m",
-  "status": "Masternode successfully started"
-}
-===========================================================================
-Sync Status:
-# resq-cli -datadir=/root/.resqcore mnsync status
-{
-  "AssetID": 999,
-  "AssetName": "MASTERNODE_SYNC_FINISHED",
-  "Attempt": 0,
-  "IsBlockchainSynced": true,
-  "IsMasternodeListSynced": true,
-  "IsWinnersListSynced": true,
-  "IsSynced": true,
-  "IsFailed": false
-}
-===========================================================================
-Masternode Information:
-# resq-cli -datadir=/root/.resqcore getinfo
-{
-  "version": 2000001,
-  "protocolversion": 70206,
-  "walletversion": 61000,
-  "balance": 0.00000000,
-  "privatesend_balance": 0.00000000,
-  "blocks": 3706,
-  "timeoffset": 0,
-  "connections": 14,
-  "proxy": "",
-  "difficulty": 394.7427119361897,
-  "testnet": false,
-  "keypoololdest": 1524361411,
-  "keypoolsize": 1001,
-  "paytxfee": 0.00000000,
-  "relayfee": 0.00010000,
-  "errors": ""
-}
-===========================================================================
-Usage: nodemon.sh [refresh delay] [datadir index]
-Example: nodemon.sh 10 22 will run every 10 seconds and query resqd in /root/.resqcore22
-
-
-Press Ctrl-C to Exit...
-
-```
-
-* * *
-
-
-
-
-
-
 

@@ -381,10 +381,10 @@ exit 1
 
 function remove_old_node() {
 echo -e "Stopping and removing old resq node"
-resq-cli stop
-rm /usr/local/bin/resq*
-rm /usr/local/bin/nodemon.sh
-rm /root/.resqcore* -r
+resq-cli stop > /dev/null 2?&1
+rm /usr/local/bin/resq* > /dev/null 2?&1
+rm /usr/local/bin/nodemon.sh > /dev/null 2?&1
+rm /root/.resqcore* -r > /dev/null 2?&1
 crontab -u root -l | grep -v '@reboot sleep 30 && resqd'  | crontab -u root -
 }
 

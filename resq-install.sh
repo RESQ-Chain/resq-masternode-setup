@@ -356,7 +356,6 @@ echo -e "Downloading Bootstrap"
 wget -q $COIN_BOOTSTRAP
 tar -xzvf $BOOTSTRAP_ZIP
 rm $BOOTSTRAP_ZIP
-exit 1
 }
 
 function newInstall() {
@@ -387,7 +386,6 @@ rm /usr/local/bin/resq* > /dev/null 2>&1
 rm /usr/local/bin/nodemon.sh > /dev/null 2>&1
 rm /root/.resqcore* -r > /dev/null 2>&1
 crontab -u root -l | grep -v '@reboot sleep 30 && resqd'  | crontab -u root -
-exit 1
 }
 
 

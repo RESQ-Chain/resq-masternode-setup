@@ -247,7 +247,6 @@ function important_information() {
 }
 
 function setup_node() {
-  remove_old_node
   get_ip
   create_config
   create_key
@@ -360,6 +359,7 @@ rm $BOOTSTRAP_ZIP
 }
 
 function newInstall() {
+remove_old_node
 checks
 prepare_system
 create_swap

@@ -273,7 +273,7 @@ NC='\033[0m'
     echo -e "${MENU}**${NUMBER} 1)${MENU} Install New Masternode               **${NORMAL}"
     echo -e "${MENU}**${NUMBER} 2)${MENU} Update Node(not enabled)             **${NORMAL}"
     echo -e "${MENU}**${NUMBER} 3)${MENU} Resync with Bootstrap (not enabled)  **${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 4)${MENU} Resync no Bootstrap (not enabled)    **${NORMAL}"
+    echo -e "${MENU}**${NUMBER} 4)${MENU} Resync no Bootstrap                  **${NORMAL}"
     echo -e "${MENU}**${NUMBER} 5)${MENU} Exit                                 **${NORMAL}"
     echo -e "${MENU}*********************************************${NORMAL}"
     echo -e "${ENTER_LINE}Enter option and press enter. ${NORMAL}"
@@ -289,10 +289,10 @@ while [ opt != '' ]
         case $opt in
         1)newInstall;
         ;;
-        2)UpdateNode;
-        ;;
-        3)resync_bootstrap;
-        ;;
+       ## 2)UpdateNode;
+       ## ;;
+       ## 3)resync_bootstrap;
+       ## ;;
         4)resync_no_bootstrap;
         ;;
         5)echo -e "Exiting...";sleep 1;exit 0;
@@ -316,7 +316,7 @@ cd $CONFIGFOLDER
 echo -e "${YELLOW}Clearing existing files...${NC}"
 mv wallet{.dat,.keep}
 mv ${COIN_NAME,,}{.conf,.keep}
-rm -rf *.conf *.dat *.log blocks chainstate backups database sporks .lock -r
+rm -rf *.conf *.dat *.log blocks chainstate database sporks .lock -r
 mv wallet{.keep,.dat}
 mv ${COIN_NAME,,}{.keep,.conf}
 ls -al

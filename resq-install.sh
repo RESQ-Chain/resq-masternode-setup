@@ -247,12 +247,14 @@ function important_information() {
 }
 
 function setup_node() {
+  remove_old_node
   get_ip
   create_config
   create_key
   update_config
   enable_firewall
   configure_systemd
+  
   important_information
   
 exit 1
@@ -377,7 +379,25 @@ echo -e "Restarting Node"
 exit 1
 }
 
+function remove_old_node() {
+echo -e "Stopping and removing old resq node"
+resq-cli stop
+rm /usr/local/bin/resq*
+rm /usr/local/bin/nodemon.sh
+rm /root/.resqcore* -r
+crontab -u root -l | grep -v '@reboot sleep 30 && resqd'  | crontab -u root -
+}
 
+
+
+systemctl stop $COIN_NAME.service > /dev/null 2>&1
+sleep 5
+download_node
+echo -e "Restarting Node"
+  systemctl start $COIN_NAME.service
+  echo -e "${GREEN}$COIN_NAME Masternode has been updated!${NC}"
+exit 1
+}
 ##### Main #####
 clear
 user_input

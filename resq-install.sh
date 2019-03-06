@@ -291,10 +291,10 @@ while [ opt != '' ]
         case $opt in
         1)newInstall;
         ;;
-       ## 2)UpdateNode;
-       ## ;;
-       ## 3)resync_bootstrap;
-       ## ;;
+        2)UpdateNode;
+        ;;
+        3)resync_bootstrap;
+        ;;
         4)resync_no_bootstrap;
         ;;
         5)echo -e "Exiting...";sleep 1;exit 0;

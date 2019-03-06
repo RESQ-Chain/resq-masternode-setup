@@ -389,15 +389,6 @@ crontab -u root -l | grep -v '@reboot sleep 30 && resqd'  | crontab -u root -
 }
 
 
-
-systemctl stop $COIN_NAME.service > /dev/null 2>&1
-sleep 5
-download_node
-echo -e "Restarting Node"
-  systemctl start $COIN_NAME.service
-  echo -e "${GREEN}$COIN_NAME Masternode has been updated!${NC}"
-exit 1
-}
 ##### Main #####
 clear
 user_input

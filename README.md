@@ -112,35 +112,3 @@ resq-cli masternode status
 
 resq-cli mnsync status
 ```
-
-If you are really bored waiting for the sync to complete, you can watch what your masternode is doing on the network at any time by using tail to **monitor the debug.log** file in realtime:
-
-```bash
-sudo tail -f ~/.resqcore/debug.log
-```
-
-**In conclusion**
-
-
-The expected output for a functioning masternode will eventually look like this:
-
-```
-{
-  "vin": "CTxIn(COutPoint(cbe3c99bed2c874a14675c54004a5b5bfda8473b98bfbd80a15743c2a1117d4f, 1), scriptSig=)",
-  "service": "104.207.157.213:13200",
-  "payee": "RN3ZoisQkdsCuXj7799kEcvJkWk6Bhc4uJ",
-  "status": "Masternode successfully started"
-}
-{
-  "AssetID": 999,
-  "AssetName": "MASTERNODE_SYNC_FINISHED",
-  "Attempt": 0,
-  "IsBlockchainSynced": true,
-  "IsMasternodeListSynced": true,
-  "IsWinnersListSynced": true,
-  "IsSynced": true,
-  "IsFailed": false
-}
-
-```
-
